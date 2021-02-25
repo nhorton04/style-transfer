@@ -1,0 +1,11 @@
+av==8.0.2
+tqdm==4.48.2
+torchvision==0.7.0
+opencv_python==4.4.0.42
+streamlit==0.62.0
+torch==1.4.0
+scikit_video==1.1.11
+matplotlib==3.3.1
+numpy==1.19.1
+Pillow==7.2.0
+skvideo==0.1.1
