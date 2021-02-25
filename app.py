@@ -22,6 +22,9 @@ def main():
         "Choose an image", type=['jpg', 'png', 'webm', 'mp4', 'gif', 'jpeg'])
     if uploaded_file is not None:
         st.image(uploaded_file, width=200)
+    else:
+        uploaded_file = os.path.abspath(os.getcwd()) + '/images/pence.jpeg'
+        st.image(uploaded_file, width=200)
 
     folder = os.path.abspath(os.getcwd())
     folder = folder + '/models'
@@ -45,6 +48,7 @@ def main():
     transformer = TransformerNet().to(device)
     transformer.load_state_dict(torch.load(
         checkpoint, map_location=torch.load('cpu')))
+    # transformer.load_state_dict(torch.load(checkpoint))
     transformer.eval()
 
     # Prepare input
