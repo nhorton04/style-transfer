@@ -19,7 +19,7 @@ matplotlib.use('agg')
 def main():
 
     uploaded_file = st.file_uploader(
-        "Choose an image", type=['jpg', 'png', 'webm', 'mp4', 'gif', 'jpeg'])
+        "Choose an image - due to processing constraints of the hosting server, this works better with smaller file sizes", type=['jpg', 'png', 'webm', 'mp4', 'gif', 'jpeg'])
     if uploaded_file is not None:
         st.image(uploaded_file, width=200)
     else:
