@@ -53,7 +53,7 @@ def main():
 
     if real_name is not None:
         st.write('+')
-        img_name = [i for i in fnames if real_name in i]
+        img_name = [i for i in imgnames if real_name in i]
         print(img_name)
 
     os.makedirs("images/outputs", exist_ok=True)
