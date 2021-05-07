@@ -29,7 +29,7 @@ def main():
     folder = os.path.abspath(os.getcwd())
     folder = folder + '/models'
 
-    image_folder = os.path.asbpath(os.getcwd())
+    image_folder = os.path.abspath(os.getcwd())
     image_folder = image_folder + '/images'
 
     fnames = []
