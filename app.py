@@ -47,7 +47,9 @@ def main():
     checkpoint = st.selectbox('Select a pretrained model', fnames)
 
     checkpoint_image = str(checkpoint)
-    print(checkpoint_image.rsplit('/home/ubuntu/style-transfer/models/', 1))
+    image_name = checkpoint_image.rsplit(
+        '/home/ubuntu/style-transfer/models/', 1)[1]
+    print(image_name.rsplit(".pth"))
 
     os.makedirs("images/outputs", exist_ok=True)
 
