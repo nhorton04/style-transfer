@@ -47,7 +47,7 @@ def main():
     checkpoint = st.selectbox('Select a pretrained model', fnames)
 
     checkpoint_image = str(checkpoint)
-    print(checkpoint_image)
+    print(checkpoint_image.rsplit('models/', 1))
 
     os.makedirs("images/outputs", exist_ok=True)
 
