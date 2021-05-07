@@ -49,7 +49,7 @@ def main():
     checkpoint_image = str(checkpoint)
     image_name = checkpoint_image.rsplit(
         '/home/ubuntu/style-transfer/models/', 1)[1]
-    print(image_name.rsplit(".pth"))
+    print(image_name.rsplit(".pth")[0])
 
     os.makedirs("images/outputs", exist_ok=True)
 
