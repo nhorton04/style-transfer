@@ -37,9 +37,11 @@ def main():
 
     for basename in os.listdir(folder):
         fname = os.path.join(folder, basename)
-        imgname = os.path.join(image_folder, basename)
         if fname.endswith('.pth'):
             fnames.append(fname)
+
+    for basename in os.listdir(image_folder):
+        imgname = os.path.join(image_folder, basename)
         if imgname.endswith('.jpg' or '.png' or '.webm' or '.jpeg'):
             imgnames.append(imgname)
 
