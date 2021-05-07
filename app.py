@@ -29,14 +29,17 @@ def main():
     folder = os.path.abspath(os.getcwd())
     folder = folder + '/models'
 
+    image_folder = os.path.asbpath(os.getcwd())
+    image_folder = image_folder + '/images'
+
     fnames = []
+    imgnames = []
 
     for basename in os.listdir(folder):
         fname = os.path.join(folder, basename)
         if fname.endswith('.pth'):
             fnames.append(fname)
-            print(f'adding:{fname}')
-    print(fnames)
+
     checkpoint = st.selectbox('Select a pretrained model', fnames)
 
     checkpoint_image = str(checkpoint)
