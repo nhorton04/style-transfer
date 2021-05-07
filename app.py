@@ -47,7 +47,7 @@ def main():
     # Define model and load model checkpoint
     transformer = TransformerNet().to(device)
     transformer.load_state_dict(torch.load(
-        checkpoint, map_location=torch.load('cpu')))
+        checkpoint, map_location='cpu'))
     # transformer.load_state_dict(torch.load(checkpoint))
     transformer.eval()
 
