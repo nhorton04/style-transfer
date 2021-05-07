@@ -42,8 +42,7 @@ def main():
 
     for basename in os.listdir(image_folder):
         imgname = os.path.join(image_folder, basename)
-        if imgname.endswith('.jpg' or '.png' or '.webm' or '.jpeg'):
-            imgnames.append(imgname)
+        imgnames.append(imgname)
 
     print(imgnames)
 
