@@ -44,20 +44,6 @@ def main():
         imgname = os.path.join(image_folder, basename)
         imgnames.append(imgname)
 
-    print(imgnames)
-
-    left_column, right_column = st.beta_columns(2)
-
-    # You can use a column just like st.sidebar:
-    left_column.button('Press me!')
-
-    # Or even better, call Streamlit functions inside a "with" block:
-    with right_column:
-        chosen = st.radio(
-            'Style images',
-            (st.image(imgnames[0]), st.image(imgnames[1]), st.image(imgnames[2]), st.image(imgnames[3]), st.image(imgnames[4]), st.image(imgnames[5]),))
-        st.write(f"You are in {chosen} house!")
-
     checkpoint = st.selectbox('Select a pretrained model', fnames)
 
     checkpoint_image = str(checkpoint)
