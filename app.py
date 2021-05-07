@@ -35,9 +35,13 @@ def main():
         fname = os.path.join(folder, basename)
         if fname.endswith('.pth'):
             fnames.append(fname)
+            print(f'adding:{fname}')
+    print(fnames)
     checkpoint = st.selectbox('Select a pretrained model', fnames)
+
     checkpoint_image = str(checkpoint)
     print(checkpoint_image)
+
     os.makedirs("images/outputs", exist_ok=True)
 
     # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
