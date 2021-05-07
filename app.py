@@ -37,8 +37,23 @@ def main():
 
     for basename in os.listdir(folder):
         fname = os.path.join(folder, basename)
+        imgname = os.path.join(image_folder, basename)
         if fname.endswith('.pth'):
             fnames.append(fname)
+        if imgname.endswith('.jpg' or '.png' or '.webm' or '.jpeg'):
+            imgnames.append(imgname)
+
+    left_column, right_column = st.beta_columns(2)
+
+    # You can use a column just like st.sidebar:
+    left_column.button('Press me!')
+
+    # Or even better, call Streamlit functions inside a "with" block:
+    with right_column:
+        chosen = st.radio(
+            'Sorting hat',
+            ("Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin"))
+        st.write(f"You are in {chosen} house!")
 
     checkpoint = st.selectbox('Select a pretrained model', fnames)
 
