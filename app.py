@@ -51,8 +51,8 @@ def main():
     # Or even better, call Streamlit functions inside a "with" block:
     with right_column:
         chosen = st.radio(
-            'Sorting hat',
-            ("Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin"))
+            'Style images',
+            (st.image(imgnames[0]), "Ravenclaw", "Hufflepuff", "Slytherin"))
         st.write(f"You are in {chosen} house!")
 
     checkpoint = st.selectbox('Select a pretrained model', fnames)
