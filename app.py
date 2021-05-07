@@ -43,17 +43,19 @@ def main():
         if imgname.endswith('.jpg' or '.png' or '.webm' or '.jpeg'):
             imgnames.append(imgname)
 
-    left_column, right_column = st.beta_columns(2)
+    print(imgnames)
 
-    # You can use a column just like st.sidebar:
-    left_column.button('Press me!')
+    # left_column, right_column = st.beta_columns(2)
 
-    # Or even better, call Streamlit functions inside a "with" block:
-    with right_column:
-        chosen = st.radio(
-            'Style images',
-            (st.image(imgnames[0]), "Ravenclaw", "Hufflepuff", "Slytherin"))
-        st.write(f"You are in {chosen} house!")
+    # # You can use a column just like st.sidebar:
+    # left_column.button('Press me!')
+
+    # # Or even better, call Streamlit functions inside a "with" block:
+    # with right_column:
+    #     chosen = st.radio(
+    #         'Style images',
+    #         (st.image(imgnames[0]), "Ravenclaw", "Hufflepuff", "Slytherin"))
+    #     st.write(f"You are in {chosen} house!")
 
     checkpoint = st.selectbox('Select a pretrained model', fnames)
 
