@@ -18,14 +18,6 @@ matplotlib.use('agg')
 
 def main():
 
-    uploaded_file = st.file_uploader(
-        "Choose an image - works better with smaller files", type=['jpg', 'png', 'webm', 'mp4', 'gif', 'jpeg'])
-    if uploaded_file is not None:
-        st.image(uploaded_file, width=200)
-    else:
-        uploaded_file = os.path.abspath(os.getcwd()) + '/images/pence.jpeg'
-        st.image(uploaded_file, width=200)
-
     folder = os.path.abspath(os.getcwd())
     folder = folder + '/models'
 
@@ -44,17 +36,29 @@ def main():
         imgname = os.path.join(image_folder, basename)
         imgnames.append(imgname)
 
+    uploaded_file = st.file_uploader(
+        "Choose an image - works better with smaller files", type=['jpg', 'png', 'webm', 'mp4', 'gif', 'jpeg'])
+    if uploaded_file is not None:
+        st.image(uploaded_file, width=200)
+    else:
+        uploaded_file = os.path.abspath(os.getcwd()) + '/images/pence.jpeg'
+        st.image(uploaded_file, width=200)
+
     checkpoint = st.selectbox('Select a pretrained model', fnames)
 
     checkpoint_image = str(checkpoint)
     image_name = checkpoint_image.rsplit(
-        '/home/ubuntu/style-transfer/models/', 1)[1]
-    real_name = image_name.rsplit(".pth")[0]
+        'models/', 1)
+    real_name = image_name[1].rsplit(".pth")[0]
+
+    print(real_name)
 
     if real_name is not None:
+        st.image(uploaded_file, width=200)
         st.write('+')
+
         img_name = [i for i in imgnames if real_name in i]
-        print(img_name)
+        print(f'image is: {img_name}')
 
     os.makedirs("images/outputs", exist_ok=True)
 
