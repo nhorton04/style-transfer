@@ -38,6 +38,7 @@ def main():
 
     uploaded_file = st.file_uploader(
         "Choose an image - works better with smaller files", type=['jpg', 'png', 'webm', 'mp4', 'gif', 'jpeg'])
+
     if uploaded_file is not None:
         st.image(uploaded_file, width=200)
     else:
@@ -47,6 +48,8 @@ def main():
     checkpoint = st.selectbox('Select a pretrained model', fnames)
 
     checkpoint_image = str(checkpoint)
+    print(checkpoint_image)
+
     image_name = checkpoint_image.rsplit(
         'models/', 1)
     real_name = image_name[1].rsplit(".pth")[0]
