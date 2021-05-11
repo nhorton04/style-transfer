@@ -68,8 +68,8 @@ def main():
             try:
                 st.image(image_folder + '/' + real_name + '.jpeg', width=400)
             except:
-                pass
-            st.image(image_folder + '/' + real_name + '.webp', width=400)
+                st.image(image_folder + '/' + real_name + '.webp', width=400)
+            pass
 
         st.write('=')
         img_name = [i for i in imgnames if real_name in i]
@@ -98,14 +98,14 @@ def main():
         with torch.no_grad():
             stylized_image = denormalize(transformer(image_tensor)).cpu()
 
-        fn2 = str(np.random.randint(0, 100)) + 'image.gif'
+        # fn2 = str(np.random.randint(0, 100)) + 'image.gif'
         fn = str(np.random.randint(0, 100)) + 'image.jpg'
         save_image(stylized_image, f"images/outputs/stylized-{fn}")
 
         # if uploaded image is gif / video
-        st.markdown(
-            f"![Alt Text](images/outputs/stylized-{fn2})")
-        st.image(f"images/outputs/stylized-{fn}", width=500)
+        # st.markdown(
+        #     f"![Alt Text](images/outputs/stylized-{fn2})")
+        st.image(f"images/outputs/stylized-{fn}", width=640)
 
     except:
         pass
