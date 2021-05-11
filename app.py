@@ -18,6 +18,8 @@ matplotlib.use('agg')
 
 def main():
 
+    st.image(os.path.abspath(os.getcwd()) + '/images/styletransfertext.png')
+
     folder = os.path.abspath(os.getcwd())
     folder = folder + '/models'
 
