@@ -68,7 +68,12 @@ def main():
             try:
                 st.image(image_folder + '/' + real_name + '.jpeg', width=400)
             except:
-                st.image(image_folder + '/' + real_name + '.webp', width=400)
+                try:
+                    st.image(image_folder + '/' +
+                             real_name + '.webp', width=400)
+                except:
+                    pass
+                pass
             pass
 
         st.write('=')
