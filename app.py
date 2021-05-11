@@ -58,7 +58,8 @@ def main():
     if real_name is not None:
         st.image(uploaded_file, width=200)
         st.write('+')
-
+        st.image(image_folder + '/' + real_name + '.jpg', width=200)
+        st.write('=')
         img_name = [i for i in imgnames if real_name in i]
         print(f'image is: {img_name}')
 
