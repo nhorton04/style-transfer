@@ -21,18 +21,36 @@ def main():
     st.image(os.path.abspath(os.getcwd()) + '/images/styletransfertext.png')
 
     folder = os.path.abspath(os.getcwd())
-    folder = folder + '/models'
+    folder = folder + '/models/good'
+
+    exp_folder = os.path.abspath(os.getcwd())
+    exp_folder = exp_folder + '/models/experimental'
+
+    decent_folder = os.path.abspath(os.getcwd())
+    decent_folder = decent_folder + '/models/decent'
 
     image_folder = os.path.abspath(os.getcwd())
     image_folder = image_folder + '/images/styles'
 
     fnames = []
     imgnames = []
+    decentfs = []
+    expfs = []
 
     for basename in os.listdir(folder):
         fname = os.path.join(folder, basename)
         if fname.endswith('.pth'):
             fnames.append(fname)
+
+    for basename in os.listdir(decent_folder):
+        fname = os.path.join(decent_folder, basename)
+        if fname.endswith('.pth'):
+            decentfs.append(fname)
+
+    for basename in os.listdir(exp_folder):
+        fname = os.path.join(exp_folder, basename)
+        if fname.endswith('.pth'):
+            expfs.append(fname)
 
     for basename in os.listdir(image_folder):
         imgname = os.path.join(image_folder, basename)
@@ -44,7 +62,16 @@ def main():
     if uploaded_file is None:
         uploaded_file = os.path.abspath(os.getcwd()) + '/images/pence.jpeg'
 
-    checkpoint = st.selectbox('Select a pretrained model', fnames)
+    tiers = ['good', 'decent', 'experimental']
+
+    choice = st.selectbox('Select the tier of model to choose from:', tiers)
+
+    if choice == 'good':
+        checkpoint = st.selectbox('Select a good model', fnames)
+    elif choice == 'decent':
+        checkpoint = st.selectbox('Select a decent model', decentfs)
+    elif choice == 'experimental':
+        checkpoint = st.selectbox('Select an experimental model', expfs)
 
     checkpoint_image = str(checkpoint)
 
