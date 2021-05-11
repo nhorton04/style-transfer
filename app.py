@@ -75,9 +75,18 @@ def main():
 
     checkpoint_image = str(checkpoint)
 
-    image_name = checkpoint_image.rsplit(
-        'models/', 1)
-    real_name = image_name[1].rsplit(".pth")[0]
+    if choice == 'good':
+        image_name = checkpoint_image.rsplit(
+            'good/', 1)
+        real_name = image_name[1].rsplit(".pth")[0]
+    elif choice == 'decent':
+        image_name = checkpoint_image.rsplit(
+            'decent/', 1)
+        real_name = image_name[1].rsplit(".pth")[0]
+    elif choice == 'experimental':
+        image_name = checkpoint_image.rsplit(
+            'experimental/', 1)
+        real_name = image_name[1].rsplit(".pth")[0]
 
     print(real_name)
 
