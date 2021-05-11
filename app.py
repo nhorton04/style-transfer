@@ -40,10 +40,10 @@ def main():
         "Choose an image - works better with smaller files", type=['jpg', 'png', 'webm', 'mp4', 'gif', 'jpeg'])
 
     if uploaded_file is not None:
-        st.image(uploaded_file, width=200)
+        print('placeholder')
     else:
         uploaded_file = os.path.abspath(os.getcwd()) + '/images/pence.jpeg'
-        st.image(uploaded_file, width=200)
+        print('placeholder')
 
     checkpoint = st.selectbox('Select a pretrained model', fnames)
 
@@ -56,9 +56,9 @@ def main():
     print(real_name)
 
     if real_name is not None:
-        st.image(uploaded_file, width=200)
+        st.image(uploaded_file, width=400)
         st.write('+')
-        st.image(image_folder + '/' + real_name + '.jpg', width=200)
+        st.image(image_folder + '/' + real_name + '.jpg', width=400)
         st.write('=')
         img_name = [i for i in imgnames if real_name in i]
         print(f'image is: {img_name}')
@@ -89,8 +89,7 @@ def main():
         fn = str(np.random.randint(0, 100)) + 'image.jpg'
         save_image(stylized_image, f"images/outputs/stylized-{fn}")
 
-        st.image(f"images/outputs/stylized-{fn}")
-        st.write(checkpoint)
+        st.image(f"images/outputs/stylized-{fn}", width=500)
 
     except:
         pass
