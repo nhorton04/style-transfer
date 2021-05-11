@@ -41,11 +41,8 @@ def main():
     uploaded_file = st.file_uploader(
         "Choose an image - works better with smaller files", type=['jpg', 'png', 'webm', 'mp4', 'gif', 'jpeg'])
 
-    if uploaded_file is not None:
-        print('placeholder')
-    else:
+    if uploaded_file is None:
         uploaded_file = os.path.abspath(os.getcwd()) + '/images/pence.jpeg'
-        print('placeholder')
 
     checkpoint = st.selectbox('Select a pretrained model', fnames)
 
@@ -64,6 +61,7 @@ def main():
             st.markdown(
                 "![Didn't display : (]({uploaded_file})")
         st.write('+')
+
         try:
             st.image(image_folder + '/' + real_name + '.jpg', width=400)
         except:
