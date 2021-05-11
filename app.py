@@ -53,6 +53,8 @@ def main():
         'models/', 1)
     real_name = image_name[1].rsplit(".pth")[0]
 
+    print(real_name)
+
     if real_name is not None:
         st.image(uploaded_file, width=200)
         st.write('+')
