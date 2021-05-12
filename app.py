@@ -17,6 +17,7 @@ matplotlib.use('agg')
 
 
 def main():
+    st.set_page_config(layout="wide")
 
     st.image(os.path.abspath(os.getcwd()) + '/images/styletransfertext.png')
 
@@ -90,6 +91,33 @@ def main():
 
     print(real_name)
 
+    col1, col2, col3, col4, col5 = st.beta_columns((1, 0.5, 1, 0.5, 2))
+
+    col1.header("Content")
+    col1.image(uploaded_file, width=400)
+
+    col2.header('+')
+
+    col3.header("Style")
+    try:
+        col3.image(image_folder + '/' + real_name + '.jpg', width=400)
+    except:
+        try:
+            col3.image(image_folder + '/' + real_name +
+                       '.jpeg', use_col_width=True)
+        except:
+            try:
+                col3.image(image_folder + '/' +
+                           real_name + '.webp', use_col_width=True)
+            except:
+                pass
+            pass
+        pass
+    # img = image_folder + '/' + real_name + '.jpg'
+    # col3.image(img, use_column_width=True)
+
+    col4.header("     =")
+
     if real_name is not None:
         try:
             st.image(uploaded_file, width=400)
@@ -146,7 +174,7 @@ def main():
         # if uploaded image is gif / video
         # st.markdown(
         #     f"![Alt Text](images/outputs/stylized-{fn2})")
-        st.image(f"images/outputs/stylized-{fn}", width=640)
+        col5.image(f"images/outputs/stylized-{fn}", width=640)
 
     except:
         pass
