@@ -102,41 +102,17 @@ def main():
     except:
         try:
             col3.image(image_folder + '/' + real_name +
-                       '.jpeg', use_col_width=True)
+                       '.jpeg', width=400)
         except:
             try:
                 col3.image(image_folder + '/' +
-                           real_name + '.webp', use_col_width=True)
+                           real_name + '.webp', width=400)
             except:
                 pass
             pass
         pass
 
     col4.header('=')
-    # img = image_folder + '/' + real_name + '.jpg'
-    # col3.image(img, use_column_width=True)
-
-    # if real_name is not None:
-    #     try:
-    #         st.image(uploaded_file, width=400)
-    #     except:
-    #         st.markdown(
-    #             "![Didn't display : (]({uploaded_file})")
-    #     st.write('+')
-
-    #     try:
-    #         st.image(image_folder + '/' + real_name + '.jpg', width=400)
-    #     except:
-    #         try:
-    #             st.image(image_folder + '/' + real_name + '.jpeg', width=400)
-    #         except:
-    #             try:
-    #                 st.image(image_folder + '/' +
-    #                          real_name + '.webp', width=400)
-    #             except:
-    #                 pass
-    #             pass
-    #         pass
 
     img_name = [i for i in imgnames if real_name in i]
     print(f'image is: {img_name}')
