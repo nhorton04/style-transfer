@@ -91,7 +91,7 @@ def main():
 
     print(real_name)
 
-    col1, col2, col3, col4, col5 = st.beta_columns((2, 0.5, 2, 0.5, 2))
+    col1, col2, col3, col4, col5 = st.beta_columns((1, .1, 1, .1, 2))
 
     col1.image(uploaded_file, width=400)
 
