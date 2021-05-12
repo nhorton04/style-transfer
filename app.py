@@ -17,6 +17,7 @@ matplotlib.use('agg')
 
 
 def main():
+    st.set_page_config(layout="wide")
 
     st.image(os.path.abspath(os.getcwd()) + '/images/styletransfertext.png')
 
@@ -90,31 +91,51 @@ def main():
 
     print(real_name)
 
-    if real_name is not None:
-        try:
-            st.image(uploaded_file, width=400)
-        except:
-            st.markdown(
-                "![Didn't display : (]({uploaded_file})")
-        st.write('+')
+    col1, col3, col5 = st.beta_columns((1, 1, 2))
 
+    col1.image(uploaded_file, width=400)
+
+    try:
+        col3.image(image_folder + '/' + real_name + '.jpg', width=400)
+    except:
         try:
-            st.image(image_folder + '/' + real_name + '.jpg', width=400)
+            col3.image(image_folder + '/' + real_name +
+                       '.jpeg', use_col_width=True)
         except:
             try:
-                st.image(image_folder + '/' + real_name + '.jpeg', width=400)
+                col3.image(image_folder + '/' +
+                           real_name + '.webp', use_col_width=True)
             except:
-                try:
-                    st.image(image_folder + '/' +
-                             real_name + '.webp', width=400)
-                except:
-                    pass
                 pass
             pass
+        pass
+    # img = image_folder + '/' + real_name + '.jpg'
+    # col3.image(img, use_column_width=True)
 
-        st.write('=')
-        img_name = [i for i in imgnames if real_name in i]
-        print(f'image is: {img_name}')
+    # if real_name is not None:
+    #     try:
+    #         st.image(uploaded_file, width=400)
+    #     except:
+    #         st.markdown(
+    #             "![Didn't display : (]({uploaded_file})")
+    #     st.write('+')
+
+    #     try:
+    #         st.image(image_folder + '/' + real_name + '.jpg', width=400)
+    #     except:
+    #         try:
+    #             st.image(image_folder + '/' + real_name + '.jpeg', width=400)
+    #         except:
+    #             try:
+    #                 st.image(image_folder + '/' +
+    #                          real_name + '.webp', width=400)
+    #             except:
+    #                 pass
+    #             pass
+    #         pass
+
+    img_name = [i for i in imgnames if real_name in i]
+    print(f'image is: {img_name}')
 
     os.makedirs("images/outputs", exist_ok=True)
 
@@ -146,7 +167,7 @@ def main():
         # if uploaded image is gif / video
         # st.markdown(
         #     f"![Alt Text](images/outputs/stylized-{fn2})")
-        st.image(f"images/outputs/stylized-{fn}", width=640)
+        col5.image(f"images/outputs/stylized-{fn}", width=640)
 
     except:
         pass
