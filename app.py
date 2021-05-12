@@ -91,14 +91,10 @@ def main():
 
     print(real_name)
 
-    col1, col2, col3, col4, col5 = st.beta_columns((1, 0.5, 1, 0.5, 2))
+    col1, col3, col5 = st.beta_columns((1, 1, 2))
 
-    col1.header("Content")
     col1.image(uploaded_file, width=400)
 
-    col2.header('+')
-
-    col3.header("Style")
     try:
         col3.image(image_folder + '/' + real_name + '.jpg', width=400)
     except:
@@ -116,33 +112,30 @@ def main():
     # img = image_folder + '/' + real_name + '.jpg'
     # col3.image(img, use_column_width=True)
 
-    col4.header("     =")
+    # if real_name is not None:
+    #     try:
+    #         st.image(uploaded_file, width=400)
+    #     except:
+    #         st.markdown(
+    #             "![Didn't display : (]({uploaded_file})")
+    #     st.write('+')
 
-    if real_name is not None:
-        try:
-            st.image(uploaded_file, width=400)
-        except:
-            st.markdown(
-                "![Didn't display : (]({uploaded_file})")
-        st.write('+')
+    #     try:
+    #         st.image(image_folder + '/' + real_name + '.jpg', width=400)
+    #     except:
+    #         try:
+    #             st.image(image_folder + '/' + real_name + '.jpeg', width=400)
+    #         except:
+    #             try:
+    #                 st.image(image_folder + '/' +
+    #                          real_name + '.webp', width=400)
+    #             except:
+    #                 pass
+    #             pass
+    #         pass
 
-        try:
-            st.image(image_folder + '/' + real_name + '.jpg', width=400)
-        except:
-            try:
-                st.image(image_folder + '/' + real_name + '.jpeg', width=400)
-            except:
-                try:
-                    st.image(image_folder + '/' +
-                             real_name + '.webp', width=400)
-                except:
-                    pass
-                pass
-            pass
-
-        st.write('=')
-        img_name = [i for i in imgnames if real_name in i]
-        print(f'image is: {img_name}')
+    img_name = [i for i in imgnames if real_name in i]
+    print(f'image is: {img_name}')
 
     os.makedirs("images/outputs", exist_ok=True)
 
