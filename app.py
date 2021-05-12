@@ -91,9 +91,11 @@ def main():
 
     print(real_name)
 
-    col1, col3, col5 = st.beta_columns((1, 1, 2))
+    col1, col2, col3, col4, col5 = st.beta_columns((2, 0.5, 2, 0.5, 2))
 
     col1.image(uploaded_file, width=400)
+
+    col2.header('+')
 
     try:
         col3.image(image_folder + '/' + real_name + '.jpg', width=400)
@@ -109,6 +111,8 @@ def main():
                 pass
             pass
         pass
+
+    col4.header('=')
     # img = image_folder + '/' + real_name + '.jpg'
     # col3.image(img, use_column_width=True)
 
