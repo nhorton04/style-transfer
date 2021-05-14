@@ -58,7 +58,7 @@ def main():
         imgnames.append(imgname)
 
     uploaded_file = st.file_uploader(
-        "Choose an image - works faster with smaller files", type=['jpg', 'png', 'webm', 'mp4', 'gif', 'jpeg'])
+        "Choose an image - a dataset of 20,000 celebrity faces was used to train the models, so pictures of faces will have best results", type=['jpg', 'png', 'webm', 'mp4', 'gif', 'jpeg'])
 
     if uploaded_file is None:
         uploaded_file = os.path.abspath(os.getcwd()) + '/images/pence.jpeg'
