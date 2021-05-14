@@ -58,7 +58,7 @@ def main():
         imgnames.append(imgname)
 
     uploaded_file = st.file_uploader(
-        "Choose an image - works better with smaller files", type=['jpg', 'png', 'webm', 'mp4', 'gif', 'jpeg'])
+        "Choose an image - works faster with smaller files", type=['jpg', 'png', 'webm', 'mp4', 'gif', 'jpeg'])
 
     if uploaded_file is None:
         uploaded_file = os.path.abspath(os.getcwd()) + '/images/pence.jpeg'
@@ -112,6 +112,11 @@ def main():
                 col3.image(image_folder + '/' +
                            real_name + '.webp', use_column_width=True)
             except:
+                try:
+                    col3.image(image_folder + '/' +
+                               real_name + '.png', use_column_width=True)
+                except:
+                    pass
                 pass
             pass
         pass
