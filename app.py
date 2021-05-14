@@ -93,20 +93,21 @@ def main():
 
     col1, col2, col3, col4, col5 = st.beta_columns((1, .1, 1, .1, 2))
 
-    col1.image(uploaded_file, width=400)
+    col1.image(uploaded_file, use_column_width=True)
 
     col2.header('+')
 
     try:
-        col3.image(image_folder + '/' + real_name + '.jpg', width=400)
+        col3.image(image_folder + '/' + real_name +
+                   '.jpg', use_column_width=True)
     except:
         try:
             col3.image(image_folder + '/' + real_name +
-                       '.jpeg', width=400)
+                       '.jpeg', use_column_width=True)
         except:
             try:
                 col3.image(image_folder + '/' +
-                           real_name + '.webp', width=400)
+                           real_name + '.webp', use_column_width=True)
             except:
                 pass
             pass
@@ -147,7 +148,7 @@ def main():
         # if uploaded image is gif / video
         # st.markdown(
         #     f"![Alt Text](images/outputs/stylized-{fn2})")
-        col5.image(f"images/outputs/stylized-{fn}", width=640)
+        col5.image(f"images/outputs/stylized-{fn}", use_column_width=True)
 
     except:
         pass
