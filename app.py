@@ -91,13 +91,15 @@ def main():
 
     print(real_name)
 
-    # col1, col2, col3, col4, col5 = st.beta_columns((1, .1, 1, .1, 2))
-    col1, col3, col5 = st.beta_columns((1, 1, 2))
+    col1, col2, col3, col4, col5 = st.beta_columns((1, .1, 1, .1, 2))
+    # col1, col3, col5 = st.beta_columns((1, 1, 2))
 
+    col1.header("Content")
     col1.image(uploaded_file, use_column_width=True)
 
-    # col2.header('+')
+    col2.header('+')
 
+    col3.header("Style")
     try:
         col3.image(image_folder + '/' + real_name +
                    '.jpg', use_column_width=True)
@@ -114,7 +116,7 @@ def main():
             pass
         pass
 
-    # col4.header('=')
+    col4.header('=')
 
     img_name = [i for i in imgnames if real_name in i]
     print(f'image is: {img_name}')
