@@ -63,7 +63,7 @@ def main():
     if uploaded_file is None:
         uploaded_file = os.path.abspath(os.getcwd()) + '/images/pence.jpeg'
 
-    tiers = ['good', 'decent', 'experimental']
+    tiers = ['good', 'decent', 'experimental', 'new']
 
     choice = st.selectbox('Select the tier of model to choose from:', tiers)
 
@@ -73,6 +73,8 @@ def main():
         checkpoint = st.selectbox('Select a decent model', decentfs)
     elif choice == 'experimental':
         checkpoint = st.selectbox('Select an experimental model', expfs)
+    elif choice == 'new':
+        checkpoint = st.selectbox('Select an new model', expfs)
 
     checkpoint_image = str(checkpoint)
 
@@ -87,6 +89,10 @@ def main():
     elif choice == 'experimental':
         image_name = checkpoint_image.rsplit(
             'experimental/', 1)
+        real_name = image_name[1].rsplit(".pth")[0]
+    elif choice == 'new':
+        image_name = checkpoint_image.rsplit(
+            'new/', 1)
         real_name = image_name[1].rsplit(".pth")[0]
 
     print(real_name)
