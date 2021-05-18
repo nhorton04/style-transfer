@@ -108,7 +108,7 @@ def main():
         even_realer = real_name.rsplit("_")[0]
 
     # print(even_realer)
-    print(real_name)
+    print(f'real_name: {real_name}')
 
     col1, col2, col3, col4, col5 = st.beta_columns((1, .1, 1, .1, 2))
     # col1, col3, col5 = st.beta_columns((1, 1, 2))

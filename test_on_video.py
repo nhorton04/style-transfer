@@ -7,11 +7,16 @@ import os
 import tqdm
 from PIL import Image
 import skvideo.io
+from random import seed
+from random import random
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--video_path", type=str, required=True, help="Path to video")
-    parser.add_argument("--checkpoint_model", type=str, required=True, help="Path to checkpoint model")
+    parser.add_argument("--video_path", type=str,
+                        required=True, help="Path to video")
+    parser.add_argument("--checkpoint_model", type=str,
+                        required=True, help="Path to checkpoint model")
     args = parser.parse_args()
     print(args)
 
@@ -38,7 +43,14 @@ if __name__ == "__main__":
 
     # Create video from frames
     video_name = args.video_path.split("/")[-1].split(".")[0]
-    writer = skvideo.io.FFmpegWriter(f"images/outputs/stylized-{video_name}.gif")
+
+    # seed random number generator
+    seed(1)
+    # generate random numbers between 0-1
+    val = random()
+
+    writer = skvideo.io.FFmpegWriter(
+        f"images/outputs/{val}-stylized-{video_name}.gif")
     for frame in tqdm.tqdm(stylized_frames, desc="Writing to video"):
         writer.writeFrame(frame)
     writer.close()
