@@ -30,6 +30,9 @@ def main():
     decent_folder = os.path.abspath(os.getcwd())
     decent_folder = decent_folder + '/models/decent'
 
+    new_folder = os.path.abspath(os.getcwd())
+    new_folder = new_folder + '/models/new'
+
     image_folder = os.path.abspath(os.getcwd())
     image_folder = image_folder + '/images/styles'
 
@@ -37,6 +40,7 @@ def main():
     imgnames = []
     decentfs = []
     expfs = []
+    newf = []
 
     for basename in os.listdir(folder):
         fname = os.path.join(folder, basename)
@@ -52,6 +56,13 @@ def main():
         fname = os.path.join(exp_folder, basename)
         if fname.endswith('.pth'):
             expfs.append(fname)
+
+    for basename in os.listdir(new_folder):
+        fname = os.path.join(new_folder, basename)
+        if fname.endswith('.pth'):
+            newf.append(fname)
+
+    print(newf)
 
     for basename in os.listdir(image_folder):
         imgname = os.path.join(image_folder, basename)
@@ -74,7 +85,7 @@ def main():
     elif choice == 'experimental':
         checkpoint = st.selectbox('Select an experimental model', expfs)
     elif choice == 'new':
-        checkpoint = st.selectbox('Select an new model', expfs)
+        checkpoint = st.selectbox('Select an new model', newf)
 
     checkpoint_image = str(checkpoint)
 
@@ -94,7 +105,9 @@ def main():
         image_name = checkpoint_image.rsplit(
             'new/', 1)
         real_name = image_name[1].rsplit(".pth")[0]
+        even_realer = real_name.rsplit("_")[0]
 
+    # print(even_realer)
     print(real_name)
 
     col1, col2, col3, col4, col5 = st.beta_columns((1, .1, 1, .1, 2))
@@ -106,6 +119,7 @@ def main():
     col2.header('+')
 
     col3.header("Style")
+
     try:
         col3.image(image_folder + '/' + real_name +
                    '.jpg', use_column_width=True)
@@ -121,6 +135,27 @@ def main():
                 try:
                     col3.image(image_folder + '/' +
                                real_name + '.png', use_column_width=True)
+                except:
+                    pass
+                pass
+            pass
+        pass
+
+    try:
+        col3.image(image_folder + '/' + even_realer +
+                   '.jpg', use_column_width=True)
+    except:
+        try:
+            col3.image(image_folder + '/' + even_realer +
+                       '.jpeg', use_column_width=True)
+        except:
+            try:
+                col3.image(image_folder + '/' +
+                           even_realer + '.webp', use_column_width=True)
+            except:
+                try:
+                    col3.image(image_folder + '/' +
+                               even_realer + '.png', use_column_width=True)
                 except:
                     pass
                 pass
