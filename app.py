@@ -93,14 +93,17 @@ def main():
         image_name = checkpoint_image.rsplit(
             'good/', 1)
         real_name = image_name[1].rsplit(".pth")[0]
+        even_realer = real_name.rsplit("_")[0]
     elif choice == 'decent':
         image_name = checkpoint_image.rsplit(
             'decent/', 1)
         real_name = image_name[1].rsplit(".pth")[0]
+        even_realer = real_name.rsplit("_")[0]
     elif choice == 'experimental':
         image_name = checkpoint_image.rsplit(
             'experimental/', 1)
         real_name = image_name[1].rsplit(".pth")[0]
+        even_realer = real_name.rsplit("_")[0]
     elif choice == 'new':
         image_name = checkpoint_image.rsplit(
             'new/', 1)
@@ -120,26 +123,26 @@ def main():
 
     col3.header("Style")
 
-    try:
-        col3.image(image_folder + '/' + real_name +
-                   '.jpg', use_column_width=True)
-    except:
-        try:
-            col3.image(image_folder + '/' + real_name +
-                       '.jpeg', use_column_width=True)
-        except:
-            try:
-                col3.image(image_folder + '/' +
-                           real_name + '.webp', use_column_width=True)
-            except:
-                try:
-                    col3.image(image_folder + '/' +
-                               real_name + '.png', use_column_width=True)
-                except:
-                    pass
-                pass
-            pass
-        pass
+    # try:
+    #     col3.image(image_folder + '/' + real_name +
+    #                '.jpg', use_column_width=True)
+    # except:
+    #     try:
+    #         col3.image(image_folder + '/' + real_name +
+    #                    '.jpeg', use_column_width=True)
+    #     except:
+    #         try:
+    #             col3.image(image_folder + '/' +
+    #                        real_name + '.webp', use_column_width=True)
+    #         except:
+    #             try:
+    #                 col3.image(image_folder + '/' +
+    #                            real_name + '.png', use_column_width=True)
+    #             except:
+    #                 pass
+    #             pass
+    #         pass
+    #     pass
 
     try:
         col3.image(image_folder + '/' + even_realer +
