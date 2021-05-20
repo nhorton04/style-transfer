@@ -62,8 +62,6 @@ def main():
         if fname.endswith('.pth'):
             newf.append(fname)
 
-    print(newf)
-
     for basename in os.listdir(image_folder):
         imgname = os.path.join(image_folder, basename)
         imgnames.append(imgname)
@@ -110,7 +108,7 @@ def main():
         real_name = image_name[1].rsplit(".pth")[0]
         even_realer = real_name.rsplit("_")[0]
 
-    # print(even_realer)
+    print(f'even_realer name: {even_realer}')
     print(f'real_name: {real_name}')
 
     col1, col2, col3, col4, col5 = st.beta_columns((1, .1, 1, .1, 2))
@@ -123,28 +121,8 @@ def main():
 
     col3.header("Style")
 
-    # try:
-    #     col3.image(image_folder + '/' + real_name +
-    #                '.jpg', use_column_width=True)
-    # except:
-    #     try:
-    #         col3.image(image_folder + '/' + real_name +
-    #                    '.jpeg', use_column_width=True)
-    #     except:
-    #         try:
-    #             col3.image(image_folder + '/' +
-    #                        real_name + '.webp', use_column_width=True)
-    #         except:
-    #             try:
-    #                 col3.image(image_folder + '/' +
-    #                            real_name + '.png', use_column_width=True)
-    #             except:
-    #                 pass
-    #             pass
-    #         pass
-    #     pass
-
     try:
+        print(f'path -- {image_folder}/{even_realer}.jpg')
         col3.image(image_folder + '/' + even_realer +
                    '.jpg', use_column_width=True)
     except:
@@ -168,7 +146,10 @@ def main():
     col4.header('=')
 
     img_name = [i for i in imgnames if real_name in i]
+    img2name = [i for i in imgnames if even_realer in i]
     print(f'image is: {img_name}')
+    print(f'img2names: {img2name}')
+    print(f'real: {real_name}, even_realer: {even_realer}')
 
     os.makedirs("images/outputs", exist_ok=True)
 
