@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 from PIL import Image
 from torchvision.utils import save_image
-# import tqdm
+import tqdm
 import streamlit as st
 from models import TransformerNet
 from utils import *
@@ -91,24 +91,24 @@ def main():
         image_name = checkpoint_image.rsplit(
             'good/', 1)
         real_name = image_name[1].rsplit(".pth")[0]
-        even_realer = real_name.rsplit("_")[0]
+        abbreviated = real_name.rsplit("_")[0]
     elif choice == 'decent':
         image_name = checkpoint_image.rsplit(
             'decent/', 1)
         real_name = image_name[1].rsplit(".pth")[0]
-        even_realer = real_name.rsplit("_")[0]
+        abbreviated = real_name.rsplit("_")[0]
     elif choice == 'experimental':
         image_name = checkpoint_image.rsplit(
             'experimental/', 1)
         real_name = image_name[1].rsplit(".pth")[0]
-        even_realer = real_name.rsplit("_")[0]
+        abbreviated = real_name.rsplit("_")[0]
     elif choice == 'new':
         image_name = checkpoint_image.rsplit(
             'new/', 1)
         real_name = image_name[1].rsplit(".pth")[0]
-        even_realer = real_name.rsplit("_")[0]
+        abbreviated = real_name.rsplit("_")[0]
 
-    print(f'even_realer name: {even_realer}')
+    print(f'abbreviated name: {abbreviated}')
     print(f'real_name: {real_name}')
 
     col1, col2, col3, col4, col5 = st.beta_columns((1, .1, 1, .1, 2))
@@ -122,21 +122,21 @@ def main():
     col3.header("Style")
 
     try:
-        print(f'path -- {image_folder}/{even_realer}.jpg')
-        col3.image(image_folder + '/' + even_realer +
+        print(f'path -- {image_folder}/{abbreviated}.jpg')
+        col3.image(image_folder + '/' + abbreviated +
                    '.jpg', use_column_width=True)
     except:
         try:
-            col3.image(image_folder + '/' + even_realer +
+            col3.image(image_folder + '/' + abbreviated +
                        '.jpeg', use_column_width=True)
         except:
             try:
                 col3.image(image_folder + '/' +
-                           even_realer + '.webp', use_column_width=True)
+                           abbreviated + '.webp', use_column_width=True)
             except:
                 try:
                     col3.image(image_folder + '/' +
-                               even_realer + '.png', use_column_width=True)
+                               abbreviated + '.png', use_column_width=True)
                 except:
                     pass
                 pass
@@ -146,10 +146,10 @@ def main():
     col4.header('=')
 
     img_name = [i for i in imgnames if real_name in i]
-    img2name = [i for i in imgnames if even_realer in i]
+    img2name = [i for i in imgnames if abbreviated in i]
     print(f'image is: {img_name}')
     print(f'img2names: {img2name}')
-    print(f'real: {real_name}, even_realer: {even_realer}')
+    print(f'real: {real_name}, abbreviated: {abbreviated}')
 
     os.makedirs("images/outputs", exist_ok=True)
 
