@@ -22,49 +22,66 @@ def main():
     st.image(os.path.abspath(os.getcwd()) + '/images/styletransfertext.png')
 
     folder = os.path.abspath(os.getcwd())
-    folder = folder + '/models/good'
+
+    folder = folder + '/models/good/'
 
     exp_folder = os.path.abspath(os.getcwd())
-    exp_folder = exp_folder + '/models/experimental'
+    exp_folder = exp_folder + '/models/experimental/'
 
     decent_folder = os.path.abspath(os.getcwd())
-    decent_folder = decent_folder + '/models/decent'
+    decent_folder = decent_folder + '/models/decent/'
 
     new_folder = os.path.abspath(os.getcwd())
-    new_folder = new_folder + '/models/new'
+    new_folder = new_folder + '/models/new/'
 
     image_folder = os.path.abspath(os.getcwd())
-    image_folder = image_folder + '/images/styles'
+    image_folder = image_folder + '/images/styles/'
 
     fnames = []
+    fnames_only = []
     imgnames = []
+    imgnames_only = []
     decentfs = []
+    decentfs_only = []
     expfs = []
-    newf = []
+    expfs_only = []
+    newfs = []
+    newfs_only = []
 
     for basename in os.listdir(folder):
         fname = os.path.join(folder, basename)
         if fname.endswith('.pth'):
             fnames.append(fname)
 
+            fname_only = basename.rsplit('.pth', 1)[0]
+            fnames_only.append(fname_only)
+
     for basename in os.listdir(decent_folder):
         fname = os.path.join(decent_folder, basename)
         if fname.endswith('.pth'):
             decentfs.append(fname)
+            decentf_only = basename.rsplit('.pth', 1)[0]
+            decentfs_only.append(decentf_only)
 
     for basename in os.listdir(exp_folder):
         fname = os.path.join(exp_folder, basename)
         if fname.endswith('.pth'):
             expfs.append(fname)
+            expf_only = basename.rsplit('.pth', 1)[0]
+            expfs_only.append(expf_only)
 
     for basename in os.listdir(new_folder):
         fname = os.path.join(new_folder, basename)
         if fname.endswith('.pth'):
-            newf.append(fname)
+            newfs.append(fname)
+            newf_only = basename.rsplit('.pth', 1)[0]
+            newfs_only.append(newf_only)
 
     for basename in os.listdir(image_folder):
         imgname = os.path.join(image_folder, basename)
         imgnames.append(imgname)
+        imgname_only = basename.rsplit('.pth', 1)[0]
+        imgnames_only.append(imgname_only)
 
     uploaded_file = st.file_uploader(
         "Choose an image - a dataset of 20,000 celebrity faces was used to train the models, so pictures of faces will have best results", type=['jpg', 'png', 'webm', 'mp4', 'gif', 'jpeg'])
@@ -77,15 +94,24 @@ def main():
     choice = st.selectbox('Select the tier of model to choose from:', tiers)
 
     if choice == 'good':
-        checkpoint = st.selectbox('Select a good model', fnames)
-    elif choice == 'decent':
-        checkpoint = st.selectbox('Select a decent model', decentfs)
-    elif choice == 'experimental':
-        checkpoint = st.selectbox('Select an experimental model', expfs)
-    elif choice == 'new':
-        checkpoint = st.selectbox('Select an new model', newf)
+        checkpoint = st.selectbox(
+            'Select a model. Name format: <image title>_<number of training iterations>', fnames_only)
+        checkpoint_image = str(folder + checkpoint + '.pth')
 
-    checkpoint_image = str(checkpoint)
+    elif choice == 'decent':
+        checkpoint = st.selectbox(
+            'Select a model. Name format: <image title>_<number of training iterations>', decentfs_only)
+        checkpoint_image = str(decent_folder + checkpoint + '.pth')
+    elif choice == 'experimental':
+        checkpoint = st.selectbox(
+            'Select a model. Name format: <image title>_<number of training iterations>', expfs_only)
+        checkpoint_image = str(exp_folder + checkpoint + '.pth')
+    elif choice == 'new':
+        checkpoint = st.selectbox(
+            'Select a model. Name format: <image title>_<number of training iterations>', newfs_only)
+        checkpoint_image = str(new_folder + checkpoint + '.pth')
+
+    print(choice, 'choice')
 
     if choice == 'good':
         image_name = checkpoint_image.rsplit(
@@ -108,8 +134,8 @@ def main():
         real_name = image_name[1].rsplit(".pth")[0]
         abbreviated = real_name.rsplit("_")[0]
 
-    print(f'abbreviated name: {abbreviated}')
     print(f'real_name: {real_name}')
+    print(f'abbreviated name: {abbreviated}')
 
     col1, col2, col3, col4, col5 = st.beta_columns((1, .1, 1, .1, 2))
     # col1, col3, col5 = st.beta_columns((1, 1, 2))
@@ -127,15 +153,15 @@ def main():
                    '.jpg', use_column_width=True)
     except:
         try:
-            col3.image(image_folder + '/' + abbreviated +
+            col3.image(image_folder + abbreviated +
                        '.jpeg', use_column_width=True)
         except:
             try:
-                col3.image(image_folder + '/' +
+                col3.image(image_folder +
                            abbreviated + '.webp', use_column_width=True)
             except:
                 try:
-                    col3.image(image_folder + '/' +
+                    col3.image(image_folder +
                                abbreviated + '.png', use_column_width=True)
                 except:
                     pass
@@ -160,7 +186,7 @@ def main():
     # Define model and load model checkpoint
     transformer = TransformerNet().to(device)
     transformer.load_state_dict(torch.load(
-        checkpoint, map_location='cpu'))
+        checkpoint_image, map_location='cpu'))
     # transformer.load_state_dict(torch.load(checkpoint))
     transformer.eval()
 
