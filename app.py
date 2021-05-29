@@ -178,8 +178,8 @@ def main():
 
     os.makedirs("images/outputs", exist_ok=True)
 
-    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    device = torch.device("cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    # device = torch.device("cpu")
     transform = style_transform()
 
     # Define model and load model checkpoint
