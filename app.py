@@ -138,7 +138,6 @@ def main():
     print(f'abbreviated name: {abbreviated}')
 
     col1, col2, col3, col4, col5 = st.beta_columns((1, .1, 1, .1, 2))
-    # col1, col3, col5 = st.beta_columns((1, 1, 2))
 
     col1.header("Content")
     col1.image(uploaded_file, use_column_width=True)
