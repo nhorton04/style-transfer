@@ -200,6 +200,10 @@ def main():
     os.makedirs("images/outputs", exist_ok=True)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if torch.cuda.is_available():
+        print('CUDA Activated!')
+    else:
+        print('Cuda Not Activated :(')
     # device = torch.device("cpu")
     transform = style_transform()
 
