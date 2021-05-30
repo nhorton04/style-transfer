@@ -34,6 +34,9 @@ def main():
     new_folder = os.path.abspath(os.getcwd())
     new_folder = new_folder + '/models/new/'
 
+    landscapes_folder = os.path.abspath(os.getcwd())
+    landscapes_folder = landscapes_folder + '/models/landscapes/'
+
     image_folder = os.path.abspath(os.getcwd())
     image_folder = image_folder + '/images/styles/'
 
@@ -47,6 +50,8 @@ def main():
     expfs_only = []
     newfs = []
     newfs_only = []
+    landscapes = []
+    landscapes_only = []
 
     for basename in os.listdir(folder):
         fname = os.path.join(folder, basename)
@@ -77,6 +82,13 @@ def main():
             newf_only = basename.rsplit('.pth', 1)[0]
             newfs_only.append(newf_only)
 
+    for basename in os.listdir(landscapes_folder):
+        fname = os.path.join(landscapes_folder, basename)
+        if fname.endswith('.pth'):
+            landscapes.append(fname)
+            landscape_only = basename.rsplit('.pth', 1)[0]
+            landscapes_only.append(landscape_only)
+
     for basename in os.listdir(image_folder):
         imgname = os.path.join(image_folder, basename)
         imgnames.append(imgname)
@@ -89,7 +101,7 @@ def main():
     if uploaded_file is None:
         uploaded_file = os.path.abspath(os.getcwd()) + '/images/pence.jpeg'
 
-    tiers = ['good', 'decent', 'experimental', 'new']
+    tiers = ['good', 'decent', 'experimental', 'new', 'landscapes --- NEW!']
 
     choice = st.selectbox('Select the tier of model to choose from:', tiers)
 
@@ -110,6 +122,10 @@ def main():
         checkpoint = st.selectbox(
             'Select a model. Name format: <image title>_<number of training iterations>', newfs_only)
         checkpoint_image = str(new_folder + checkpoint + '.pth')
+    elif choice == 'landscapes --- NEW!':
+        checkpoint = st.selectbox(
+            'Select a model. Name format: <image title>_<number of training iterations>', landscapes_only)
+        checkpoint_image = str(landscapes_folder + checkpoint + '.pth')
 
     print(choice, 'choice')
 
@@ -131,6 +147,11 @@ def main():
     elif choice == 'new':
         image_name = checkpoint_image.rsplit(
             'new/', 1)
+        real_name = image_name[1].rsplit(".pth")[0]
+        abbreviated = real_name.rsplit("_")[0]
+    elif choice == 'landscapes --- NEW!':
+        image_name = checkpoint_image.rsplit(
+            'landscapes/', 1)
         real_name = image_name[1].rsplit(".pth")[0]
         abbreviated = real_name.rsplit("_")[0]
 
