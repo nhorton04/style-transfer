@@ -127,7 +127,7 @@ def main():
             'Select a model. Name format: <image title>_<number of training iterations>', landscapes_only)
         checkpoint_image = str(landscapes_folder + checkpoint + '.pth')
 
-    print(choice, 'choice')
+    # print(choice, 'choice')
 
     if choice == 'good':
         image_name = checkpoint_image.rsplit(
@@ -155,8 +155,8 @@ def main():
         real_name = image_name[1].rsplit(".pth")[0]
         abbreviated = real_name.rsplit("_")[0]
 
-    print(f'real_name: {real_name}')
-    print(f'abbreviated name: {abbreviated}')
+    # print(f'real_name: {real_name}')
+    # print(f'abbreviated name: {abbreviated}')
 
     col1, col2, col3, col4, col5 = st.beta_columns((1, .1, 1, .1, 2))
 
