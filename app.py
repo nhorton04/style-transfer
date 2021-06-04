@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 from PIL import Image
 from torchvision.utils import save_image
 import tqdm
@@ -11,9 +10,6 @@ from torch.autograd import Variable
 import argparse
 import tkinter as tk
 import os
-import cv2
-import matplotlib
-matplotlib.use('agg')
 
 
 def main():
