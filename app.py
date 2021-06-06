@@ -8,7 +8,7 @@ import torch
 import numpy as np
 from torch.autograd import Variable
 import argparse
-import tkinter as tk
+# import tkinter as tk
 import os
 
 
