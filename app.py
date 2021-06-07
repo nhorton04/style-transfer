@@ -1,6 +1,5 @@
 from PIL import Image
 from torchvision.utils import save_image
-import tqdm
 import streamlit as st
 from models import TransformerNet
 from utils import *
@@ -8,7 +7,6 @@ import torch
 import numpy as np
 from torch.autograd import Variable
 import argparse
-# import tkinter as tk
 import os
 
 
