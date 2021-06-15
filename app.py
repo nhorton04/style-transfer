@@ -93,6 +93,7 @@ def main():
 
     if uploaded_file is None:
         uploaded_file = os.path.abspath(os.getcwd()) + '/images/pence.jpeg'
+
         # uploaded_file = os.path.abspath(
         # os.getcwd()) + '/images/UCB-MIDS_homepage_hero_desktop.jpg'
 
